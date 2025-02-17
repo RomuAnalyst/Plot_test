@@ -1,14 +1,7 @@
-# Installer les packages nécessaires si ce n'est pas déjà fait
-# Installer les packages nécessaires si absent
-
-to_install <- c("tidyverse", "showtext") 
-
+# Installer les packages nécessaires si absents
+to_install <- c("tidyverse", "showtext")
 new_packages <- to_install[!(to_install %in% installed.packages()[,"Package"])]
-
 if(length(new_packages)) install.packages(new_packages)
-
-
-
 
 library(tidyverse)
 library(showtext)
@@ -18,7 +11,6 @@ showtext_auto()
 showtext_opts(dpi = 300)
 
 vaccines <- c("DTP, DTaP, or DT", "MMR", "Polio")
-
 
 cdc_data <- read_csv("Vaccination_Coverage_and_Exemptions_among_Kindergartners_20250118.csv") %>%
   filter(Geography == "United States") %>%
@@ -43,7 +35,6 @@ cdc_data %>%
   annotate(geom = "segment",
            x = c(2023.2, 2023), xend = c(2023, 2023),
            y = c(93.1, 93.1), yend = c(93.1, 92.7)) +
-  
   geom_point(size = 3, shape = 21, color = "white", show.legend = FALSE) +
   annotate(geom = "text", hjust = 1, vjust = -0.3,
            x = 2023.25, y = 95, label = "FEDERAL\nMEASLES TARGET",
@@ -53,4 +44,4 @@ cdc_data %>%
             mapping = aes(x = year, y = estimate,
                           color = vaccine, label = label),
             hjust = 0, lineheight = 0.8, size = 13, size.unit = "pt",
-            family
+            family = "franklin")
