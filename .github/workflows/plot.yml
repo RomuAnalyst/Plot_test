@@ -14,22 +14,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up R
-        uses: r-lib/actions/setup-r@v1
+        uses: r-lib/actions/setup-r@v2
 
       - name: Install R packages
         run: |
-          install.packages(c("tidyverse", "showtext"))
+          Rscript -e "install.packages(c('tidyverse', 'showtext'))"
 
       - name: Execute R script
         run: |
           Rscript Script.R
-          
-      - name: Commit and Push CSV Update
-        run: |
-          git config --local user.email "you@example.com"  # Remplacez par votre adresse email
-          git config --local user.name "Your Name"  # Remplacez par votre nom
-          git add index.html  # Chemin vers votre fichier CSV (ajustez si nécessaire)
-          git commit -m "Update index.html" || echo "No changes to commit"  # Commit les modifications
-          git push origin main  # Poussez les modifications sur la branche principale
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Utilisez
