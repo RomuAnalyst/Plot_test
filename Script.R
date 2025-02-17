@@ -1,3 +1,15 @@
+# Installer les packages nécessaires si ce n'est pas déjà fait
+# Installer les packages nécessaires si absent
+
+to_install <- c("tidyverse", "showtext") 
+
+new_packages <- to_install[!(to_install %in% installed.packages()[,"Package"])]
+
+if(length(new_packages)) install.packages(new_packages)
+
+
+
+
 library(tidyverse)
 library(showtext)
 
