@@ -1,9 +1,9 @@
 name: Daily R Script Execution
 
 # Déclenche le workflow quotidiennement à 8h du matin (UTC)
-#on:
- # schedule:
-   # - cron: '0 8 * * *'
+on:
+  schedule:
+    - cron: '0 8 * * *'
 
 jobs:
   build:
